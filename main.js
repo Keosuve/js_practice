@@ -1,5 +1,6 @@
 $(document).ready(function(){
     
+    
     //Activar/ Desactivar Tab active
     $(document).on('click','#contact_tools li a',function(){
         
@@ -9,7 +10,7 @@ $(document).ready(function(){
     });
 
     //Eliminar Mensaje
-    $(document).on('click', '.delete', function () {
+    $(document).on('click', '.delete', function (){
         
         var element = $(this);
 
@@ -22,14 +23,12 @@ $(document).ready(function(){
             var count = $(message_list + ' .message-item').length;
 
             if (count == 0) {
-                $(message_list).removeClass('hidden').addClass('hidden');
+                $(message_list).addClass('hidden');
                 $(empty_message).removeClass('hidden');
             }
 
         });
 
-        
-        
     });
 
     //Añadir emoji a texto textarea
@@ -38,6 +37,45 @@ $(document).ready(function(){
         var old_text = $('#message').val();
         $('#message').val(old_text + $(this).text());
 
+    });
+
+    //Pintar borde imagen
+    $(document).on('click', '.avatar-contact', function () {
+
+        $('.avatar-contact').removeClass('active');
+        $(this).addClass('active');
+
+    }); 
+
+    //Crear contacto
+    $(document).on('click', '#add_contant_button', function () {
+
+        var name = $('#name').val();
+        var lastname = $('#lastname').val();
+        var avatar = $('.avatar-contact.active').attr('src');
+        var correct = true;
+        
+        if(name == ""){
+            $('#name_error').removeClass('hidden');
+            correct = false;
+        }
+
+        if (lastname == "") {
+            $('#lastname_error').removeClass('hidden');
+        }
+
+        if(avatar == undefined){
+            $('#avatar_error').removeClass('hidden');
+        }
+
+        if(correct == true)
+        //funcion que va a crear el contacto
+
+    });
+
+    //Remover error
+    $(document).on('click', '.validate', function () {
+        $(this).parents('.form-group').children('.error').addClass('hidden');
     });
 
 });
